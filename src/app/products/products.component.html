@@ -1,0 +1,33 @@
+<!-- <button (click)="saveProduct()">polsod</button> -->
+<div class="container">
+<div class= "row">
+  <div class = "col-3">
+   <product-filter [category] = "categ"></product-filter>
+  </div>
+</div>
+<p>
+    <input #query (keyup)="filter(query.value)" type="text" placeholder="Search..." class="form-control">
+  </p>
+
+
+
+  <div class= "col">
+      <div class="row">
+    <div *ngFor="let product of filteredProducts"class="card" id="smartwatches" style="width: 15rem;">
+      <img class="card-img-top" [src]="product.imageUrl" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{product.price}}</p>
+        </div>
+        
+        <div class="card-footer">
+          <button class="btn btn-primary btn-block" type="button" [routerLink] = "['/viewDetails',product.pid]" id="viewdetails" (click)="viewDetails()"> View Details </button>         
+         </div>
+      </div>
+</div>
+</div>
+</div>
+
+
+
+

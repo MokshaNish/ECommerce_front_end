@@ -1,0 +1,26 @@
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+        <div class="col-sm-6 col-md-4">
+           <div class="thumbnail" >
+              <h4 class="text-center"><span class="label label-info">Product Details</span></h4>
+              <img *ngIf="product.imageUrl" [src]  ="product.imageUrl" class="img-fluid" alt="Responsive image">
+              <div class="caption">
+                 <div class="row">
+                    
+                       <h3>{{product.name}}</h3>
+                   
+                    <div class="col-md-6 col-xs-6 price">
+                       <h3>
+                       <label>{{product.price}}</label></h3>
+                    </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-md-6">
+                       <button (click)="addtoCart(product)" class="btn btn-success btn-product"> Add to Cart</button> 
+                    </div>
+
+                 <p> </p>
+              </div>
+           </div>
+        </div>
