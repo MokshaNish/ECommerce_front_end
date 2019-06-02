@@ -10,9 +10,9 @@
               <a 
                *ngFor="let c of categoryList" 
                routerLink = "/"
-              [queryParams] = "{category : c.id}"
+              [queryParams] = "{category : c.categoryId}"
                class = "list-group-item list-group-item-action"
-               [class.active]= "categ === c.id ">
+               [class.active]= "categ === c.categoryId ">
                {{c.categoryName}}
             </a>
      </div>

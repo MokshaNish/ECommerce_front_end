@@ -1,0 +1,85 @@
+<div class = "row">
+<div class="col-md-6">
+  <legend>Address Details</legend>
+  <div class="container">
+    <form #ShippingForm="ngForm" (ngSubmit)="save()">
+
+      <div class="form-group">
+        <label for="line1">Line 1 </label>
+        <input type="text" #line1="ngModel" [(ngModel)]="product.id" class="form-control" id="line1" name="line1"
+          placeholder="Address Line 1">
+      </div>
+      <div class="form-group">
+        <label for="line2">Line 2</label>
+        <input type="text" #line2="ngModel" [(ngModel)]="product.name" class="form-control" id="line2" name="line2"
+          placeholder="Address Line 2">
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" #city="ngModel" [(ngModel)]="product.imageUrl" class="form-control" id="city" name="city"
+          placeholder="City">
+      </div>
+
+      <div class="form-group">
+        <label for="postalCode">Postal Code</label>
+        <input type="text" #postalCode="ngModel" [(ngModel)]="product.categoryId" class="form-control" id="postalCode"
+          name="postalCode" placeholder="Postal Code">
+      </div>
+      <button type="submit" id="save" class="btn btn-primary">Save</button>
+
+    </form>
+  </div>
+
+
+  <div class="container">
+      <div class="row">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <legend>Payment Details</legend>
+    
+            </div>
+            <div class="panel-body">
+              <form role="form">
+                <div class="form-group">
+                  <label for="cardNumber">
+                    CARD NUMBER</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number" required
+                      autofocus />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-7 col-md-7">
+                    <div class="form-group">
+                      <label for="expityMonth">
+                        EXPIRY DATE</label>
+                      <div class="col-xs-6 col-lg-6 pl-ziro">
+                        <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                      </div>
+                      <div class="col-xs-6 col-lg-6 pl-ziro">
+                        <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 col-md-5 pull-right">
+                    <div class="form-group">
+                      <label for="cvCode">
+                        CV CODE</label>
+                      <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <br />
+          <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+</div>
+
+</div>

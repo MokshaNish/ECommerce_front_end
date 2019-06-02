@@ -209,3 +209,7 @@ h1, .sub-heading {
   transform: translate3d(0, -100%, 0);
   opacity: 0;
 }
+
+#productNameInCart{
+  font-size: 1em;
+}

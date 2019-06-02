@@ -16,9 +16,10 @@ export class ProductFilterComponent implements OnInit {
 
   ngOnInit() {
     this.categoryService.getAll().subscribe(category => {
-      console.log(category);
+     // console.log(category);
       this.categoryList = category;
     }); 
+
   }
 
 }

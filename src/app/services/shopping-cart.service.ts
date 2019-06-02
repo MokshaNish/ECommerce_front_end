@@ -1,4 +1,4 @@
-import { Cart } from './../models/cart';
+import { OrderItem } from '../models/OrderItem';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,13 +7,35 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ShoppingCartService {
 
-  apiURL = "http://localhost:8080/cart";
+  apiURL = "http://localhost:8080/orderItem";
 
 
   constructor(private http: HttpClient) { }
 
 
-  addshoppingCart(cartProduct: Cart){
-    return this.http.post<Cart>(this.apiURL,cartProduct); 
+  addshoppingCart(cartProduct: OrderItem){
+    return this.http.post<OrderItem>(this.apiURL,cartProduct); 
+  }
+
+  getProductFromCart() {
+    
+    return this.http.get<[]>(this.apiURL);
+  }
+
+  get(id) {
+
+     return this.http.get<{}>(this.apiURL + `/${id}`);
+  }
+
+  getAllCartItem(){
+
+    return this.http.get<[]>(this.apiURL+'/all');
+
+  }
+
+  addProductToCart(oi:OrderItem){
+    return this.http.post(this.apiURL, oi);
+
+
   }
 }

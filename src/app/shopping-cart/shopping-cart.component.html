@@ -1,55 +1,73 @@
-<div class="main">
-  <h1>Shopping cart</h1>
-  <h2 class="sub-heading">Free shipping from $100!</h2>
 
-  <section class="shopping-cart">
-    <ol class="ui-list shopping-cart--list" id="shopping-cart--list">
 
-      <script id="shopping-cart--list-item-template" type="text/template">
-        <li class="_grid shopping-cart--list-item">
-          <div class="_column product-image">
-            <img class="product-image--img" src="{{=img}}" alt="Item image" />
-          </div>
-          <div class="_column product-info">
-            <h4 class="product-name">{{=name}}</h4>
-            <p class="product-desc">{{=desc}}</p>
-            <div class="price product-single-price">${{=price}}</div>
-          </div>
-          <div class="_column product-modifiers" data-product-price="{{=price}}">
-            <div class="_grid">
-              <button class="_btn _column product-subtract">&minus;</button>
-              <div class="_column product-qty">0</div>
-              <button class="_btn _column product-plus">&plus;</button>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <table *ngIf="orderItemList" class="table table-hover">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Total</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let o of orderItemList">
+            <td class="col-sm-8 col-md-6">
+              <div class="media">
+                <a class="thumbnail pull-left" href="#"> <img class="media-object" [src]="o.product.imageUrl"
+                    style="width: 72px; height: 72px;"> </a>
+                <div class="media-body">
+                  <h4 class="media-heading" id ="productNameInCart"><a href="#">{{o.product.name}}</a></h4>
+                </div>
+              </div>
+            </td>
+            <td>
+            <div class="form-inline">
+            <button type="button"(click)="onAddQuantity()"class="btn btn-success">+</button>
+            <input type="number"[ngModel]="o.quantity" (ngModelCnhange)="o.quantity=$event" class="form-control" id="cartQuantity"/> 
+            <button type="button"(click)="onRemoveQuantity()"class="btn btn-danger">-</button>
             </div>
-            <button class="_btn entypo-trash product-remove">Remove</button>
-            <div class="price product-total-price">$0.00</div>
-          </div>
-        </li>
-      </script>
 
-    </ol>
+            </td>
+            <td class="col-sm-1 col-md-1 text-center"><strong>{{o.product.price | currency:'LKR'}}</strong></td>
+            <td class="col-sm-1 col-md-1 text-center"><strong>{{o.product.price * o.quantity | currency:'LKR'}}</strong></td>
+            <td class="col-sm-1 col-md-1">
+              <button type="button" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span> Remove
+              </button>
+            </td>
 
-    <footer class="_grid cart-totals">
-      <div class="_column subtotal" id="subtotalCtr">
-        <div class="cart-totals-key">Subtotal</div>
-        <div class="cart-totals-value">$0.00</div>
-      </div>
-      <div class="_column shipping" id="shippingCtr">
-        <div class="cart-totals-key">Shipping</div>
-        <div class="cart-totals-value">$0.00</div>
-      </div>
-      <div class="_column taxes" id="taxesCtr">
-        <div class="cart-totals-key">Taxes (6%)</div>
-        <div class="cart-totals-value">$0.00</div>
-      </div>
-      <div class="_column total" id="totalCtr">
-        <div class="cart-totals-key">Total</div>
-        <div class="cart-totals-value">$0.00</div>
-      </div>
-      <div class="_column checkout">
-        <button class="_btn checkout-btn entypo-forward">Checkout</button>
-      </div>
-    </footer>
 
-  </section>
+          </tr>
+          <tr>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>
+              <h3>Total</h3>
+            </td>
+            <td class="text-right">
+              <h3><strong>{{totalPrice| currency:'LKR'}}</strong></h3>
+            </td>
+          </tr>
+          <tr>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>
+              <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+              </button></td>
+            <td>
+              <button type="button" class="btn btn-success">
+                Checkout <span class="glyphicon glyphicon-play"></span>
+              </button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

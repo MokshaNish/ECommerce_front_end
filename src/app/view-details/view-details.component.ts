@@ -2,7 +2,7 @@ import { Product } from './../models/product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { Cart } from '../models/cart';
+import { OrderItem } from '../models/OrderItem';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
@@ -11,16 +11,18 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   styleUrls: ['./view-details.component.css']
 })
 export class ViewDetailsComponent implements OnInit {
+  productAddedToCart: any;
+  product ={};
+  id;
+  shopcart : OrderItem = <OrderItem>{};
+  productList: Product[]=[];
+  quantity= 1;
+
 
   constructor(private productService: ProductService,
     private shoppingCartService: ShoppingCartService,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute) { }
 
-
-  product = {};
-  id;
-  shopcart : Cart = <Cart>{};
 
   ngOnInit() {
 
@@ -35,21 +37,22 @@ export class ViewDetailsComponent implements OnInit {
   }
 
   addtoCart(product : Product){
-    let shopcart = <Cart> new Object();
-    shopcart.pid = product.pid;
-    shopcart.productName = product.name;
-    shopcart.price = product.price;
-    shopcart.imageUrl = product.imageUrl;
-    shopcart.quantity =1;
-    shopcart.uid = 1;
-
-    console.log(shopcart);
-
-    this.shoppingCartService.addshoppingCart(shopcart);
     
-  
- 
- 
+    console.log(product);
+    //this.productAddedToCart = this.shoppingCartService.getProductFromCart();
+    //if(this.productAddedToCart==null){
+      //this.productAddedToCart=[];
+
+      let oi = <OrderItem> new Object();
+      oi.status = "Pending";
+      oi.quantity = 1;
+      oi.product=product;
+
+      this.shoppingCartService.addProductToCart(oi).subscribe(data => {
+        console.log(data);
+      });
+
+   //}
   }
 
 }

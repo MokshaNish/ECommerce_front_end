@@ -1,23 +1,27 @@
+import { Category } from './category';
+import { OrderItem } from './OrderItem';
 export class Product {
-  c: any;
-    
+  category: Category = new Category();
+
+  orderItemList: OrderItem[];
+
+  
     id : number;
     name : string;
     price : number;
-    categoryId : number;
     quantity : number;
     imageUrl : String;
-  pid: number;
+    pid: number;
     
   
     constructor()
     {
       this.id = null;
+      this.pid=null;
       this.name = null;
       this.price = null;
-      this.categoryId = null;
-  this.quantity = null;
-  this.imageUrl = null;
+    this.quantity = null;
+    this.imageUrl = null;
   }
 }
 

@@ -1,3 +1,5 @@
+import { LoginComponent } from './login/login.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { HomeComponent } from './admin/home/home.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { RegisterComponent } from './register/register.component';
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: "viewDetails/:pid", component: ViewDetailsComponent },
   { path: "newproduct", component: ManageItemsComponent },
   { path: "editdetails/:pid", component: ManageItemsComponent },
+  { path: "login", component: LoginComponent },
+  { path: "checkout", component: CheckoutComponent },
 
   
 ];

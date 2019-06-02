@@ -12,9 +12,7 @@ import { Subscription } from "rxjs/internal/Subscription";
 export class ProductsComponent implements OnInit {
 
   productList: Product[] = [];
-
   filteredProducts: Product[] = [];
-  //filteredProductList: Product[] = [];
   productListSub: Subscription;
   id;
   categ: string;
@@ -36,7 +34,7 @@ export class ProductsComponent implements OnInit {
 
         let cid = parseInt(this.categ);
         this.filteredProducts = (cid) ?
-          this.productList.filter(product => product.categoryId == cid) :
+          this.productList.filter(product => product.category.categoryId == cid) :
           this.productList;
 
       });

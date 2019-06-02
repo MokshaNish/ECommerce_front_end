@@ -18,6 +18,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './admin/home/home.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderSummeryComponent } from './order-summery/order-summery.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { HomeComponent } from './admin/home/home.component';
     ProductCardComponent,
     ProductFilterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CheckoutComponent,
+    OrderSummeryComponent
   ],
   imports: [
     BrowserModule,

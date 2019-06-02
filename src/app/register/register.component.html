@@ -1,33 +1,39 @@
-<div class="container">
-  <form>
-    <div class="form-group">
-      <label for="formGroupExampleInput">E-mail Address</label>
-      <input type="text" class="form-control" id="email" placeholder="Enter E-mail address">
+<h1>Register</h1>
+
+<div class="col-md-6">
+  <div class="container">
+    <form #registerForm="ngForm" (ngSubmit)="saveDetails()">
+
+      <div class="form-group">
+        <label for="email">E-mail Address:</label>
+        <input type="text" #email="ngModel" [(ngModel)]="user.email" class="form-control" id="email" name="email" placeholder="Enter E-mail Address" required>
+            </div>
+      <div class="form-group">
+        <label for="fName">First Name:</label>
+        <input type="text" #fName="ngModel" [(ngModel)]="user.fName" class="form-control" id="fName" name="fName"
+          placeholder="Enter First Name" required>
+      </div>
+      <div class="form-group">
+        <label for="lName">Last Name:</label>
+        <input type="text" #lName="ngModel" [(ngModel)]="user.lName" class="form-control" id="lName"
+          name="lName" placeholder="Enter Last Name" required>
+      </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="text" #password="ngModel" [(ngModel)]="user.password" class="form-control"
+            id="password" name="password" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group">
+          <label for="contactNo">Contact Number:</label>
+          <input type="text" #contactNo="ngModel" [(ngModel)]="user.contactNo" class="form-control" id="contactNo"
+            name="contactNo" placeholder="Enter Contact Number" required>
+        </div>
+        <div>
+        <button type="submit" id="saveDetails" class="btn btn-danger">Save Details</button>
+      
+      </div>
+    </form>
     </div>
-    
-    <div class="form-group">
-      <label for="formGroupExampleInput2">First Name</label>
-      <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
     </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput3">Last Name</label>
-      <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
-    </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput3">Type</label>
-      <input type="text" class="form-control" id="type" placeholder="Enter Last Name">
-    </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput4">Password</label>
-      <input type="text" class="form-control" id="password" placeholder="Enter Password">
-    </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput5">Contact Number</label>
-      <input type="text" class="form-control" id="contact" placeholder="Enter Contact Number">
-    
-      <button type="button" id = "register" class="btn btn-primary">Register</button>
-    </div>
-  </form>
-  
-</div>
+ 
 
