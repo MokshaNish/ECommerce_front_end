@@ -1,3 +1,4 @@
+import { Product } from './../../models/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -9,21 +10,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ManageItemsComponent implements OnInit {
 
-  product = {};
+  product: Product = new Product();
   id;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
 
     this.id = this.route.snapshot.paramMap.get("pid");
 
-    this.productService.get(this.id).subscribe(product => {
-      console.log(product);
-     this.product = product;
-    });
-
+    if (this.id) {
+      this.productService.get(this.id).subscribe((product: Product) => {
+        console.log(product);
+        this.product = product;
+      });
+    }
   }
 
   save() {
@@ -35,16 +37,16 @@ export class ManageItemsComponent implements OnInit {
     });
   }
 
-  deleteItem(){
-    if(!confirm('Are you want to delete the item ')) return;
-      this.productService.deleteProduct(this.id).subscribe(data =>{
-        console.log(data);
-      });
+  deleteItem() {
+    if (!confirm('Are you want to delete the item ')) return;
+    this.productService.deleteProduct(this.id).subscribe(data => {
+      console.log(data);
+    });
 
-    
+
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.product);
   }
 

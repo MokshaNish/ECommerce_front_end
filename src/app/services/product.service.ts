@@ -1,3 +1,4 @@
+import { Product } from 'src/app/models/product';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,7 +18,7 @@ export class ProductService {
 
   get(id) {
 
-     return this.http.get<{}>(this.apiURL + `/${id}`);
+     return this.http.get<Product>(this.apiURL + `/${id}`);
   }
 
   save(product) {

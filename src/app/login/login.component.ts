@@ -1,6 +1,7 @@
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -9,30 +10,47 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  email='';
-  password='';
   inavalidLogin = false;
+  user: User = new User();
 
-  constructor(private authService:AuthService,
-              private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
-  checkLogin(){
-    (this.authService.authenticate(this.email,this.password).subscribe(
-        data=>{
-          console.log("response",data)
+  checkLogin() {
 
-          let user = sessionStorage.setItem('email',this.email)
+    // console.log(this.user);
 
-          this.router.navigate([''])
-          this.inavalidLogin=false;
+    (this.authService.authenticate(this.user).subscribe(
+      data => {
+        console.log("response", data)
 
-        },
-         error=>{
-           this.inavalidLogin=true;
-         }
+        if(data){
+
+          this.inavalidLogin = false;
+          let userType = data['type'];
+
+          sessionStorage.setItem('email', data['email']);
+          sessionStorage.setItem('id', data['id']);
+
+          if (userType == 'Customer') {
+            this.router.navigate([''])
+          }
+          else {
+            this.router.navigate(['/admin'])
+          }
+        }
+        else{
+          console.log("Invalid credentials")
+        }
+
+      },
+      error => {
+        this.inavalidLogin = true;
+      }
     )
     );
   }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,28 +12,25 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  saveUserDetails(user){
-
+  saveUserDetails(user: User) {
     return this.http.post(this.apiURL, user);
-
   }
 
-  authenticate(email:string, password:string){
-    return this.http.get(this.apiURL+email);
-
+  authenticate(user) {
+    return this.http.post(this.apiURL + '/auth', user);
   }
 
-  authenticated(email:string){
-    return this.http.get(this.apiURL+email);
+  authenticated(email: string) {
+    return this.http.get(this.apiURL + email);
   }
 
-  isUserLoggedIn(){
-    let user= sessionStorage.getItem('email')
-    console.log(!(user===null))
-    return !(user===null)
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('email')
+    console.log(!(user === null))
+    return !(user === null)
   }
 
-  logOut(){
+  logOut() {
     sessionStorage.removeItem('email');
   }
 }

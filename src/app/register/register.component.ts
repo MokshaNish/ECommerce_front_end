@@ -9,23 +9,23 @@ import { User } from '../models/user';
 })
 export class RegisterComponent implements OnInit {
 
-user = {};
+  // user = {};
+  user: User = new User();
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
 
-  
+
   }
 
-  saveDetails(user:User) {
+  saveDetails() {
+
 
     console.log(this.user);
 
-    let u = <User> new Object();
-    u.type = "Customer";
-    
-  
+    this.user.type = "Customer";
+
     this.authService.saveUserDetails(this.user).subscribe(data => {
       console.log(data);
     });
