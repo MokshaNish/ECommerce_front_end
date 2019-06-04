@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Cart } from './../models/Cart';
+import { Component, OnInit, Input } from '@angular/core';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { OrderItem } from '../models/OrderItem';
 
 @Component({
   selector: 'app-checkout',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+
+  orderItemSummeryList:OrderItem[]=[];
+
+  
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
+
+    this.shoppingCartService.getAllCartItem().subscribe(orderItem => {
+      this.orderItemSummeryList=orderItem;
+       console.log(this.orderItemSummeryList);
+     });
+    
+
+
   }
 
 }

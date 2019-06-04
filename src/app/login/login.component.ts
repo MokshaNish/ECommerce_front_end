@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../services/shopping-cart.service';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private shoppingCartService: ShoppingCartService,
     private router: Router) { }
 
   ngOnInit() {
@@ -26,24 +28,31 @@ export class LoginComponent implements OnInit {
 
     (this.authService.authenticate(this.user).subscribe(
       data => {
-        console.log("response", data)
+        // console.log("response", data)
 
-        if(data){
+        if (data) {
 
           this.inavalidLogin = false;
           let userType = data['type'];
 
           sessionStorage.setItem('email', data['email']);
-          sessionStorage.setItem('id', data['id']);
+          sessionStorage.setItem('userId', data['id']);
 
           if (userType == 'Customer') {
-            this.router.navigate([''])
+
+            this.shoppingCartService.getCarByUserId().subscribe(cartData => {
+              // console.log(cartData);
+              sessionStorage.setItem('cartId', cartData['id']);
+            });
+
+            this.router.navigate(['/home'])
+
           }
           else {
             this.router.navigate(['/admin'])
           }
         }
-        else{
+        else {
           console.log("Invalid credentials")
         }
 

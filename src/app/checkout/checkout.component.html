@@ -6,32 +6,28 @@
 
       <div class="form-group">
         <label for="line1">Line 1 </label>
-        <input type="text" #line1="ngModel" [(ngModel)]="product.id" class="form-control" id="line1" name="line1"
+        <input type="text"  class="form-control" id="line1" name="line1"
           placeholder="Address Line 1">
       </div>
       <div class="form-group">
         <label for="line2">Line 2</label>
-        <input type="text" #line2="ngModel" [(ngModel)]="product.name" class="form-control" id="line2" name="line2"
+        <input type="text" class="form-control" id="line2" name="line2"
           placeholder="Address Line 2">
       </div>
 
       <div class="form-group">
         <label for="city">City</label>
-        <input type="text" #city="ngModel" [(ngModel)]="product.imageUrl" class="form-control" id="city" name="city"
+        <input type="text"  class="form-control" id="city" name="city"
           placeholder="City">
       </div>
 
       <div class="form-group">
         <label for="postalCode">Postal Code</label>
-        <input type="text" #postalCode="ngModel" [(ngModel)]="product.categoryId" class="form-control" id="postalCode"
+        <input type="text"  class="form-control" id="postalCode"
           name="postalCode" placeholder="Postal Code">
       </div>
-      <button type="submit" id="save" class="btn btn-primary">Save</button>
-
     </form>
   </div>
-
-
   <div class="container">
       <div class="row">
           <div class="panel panel-default">
@@ -74,12 +70,33 @@
             </div>
           </div>
           <br />
-          <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+          <a href="http://www.jquery2dotnet.com" class="btn btn-success btn-lg btn-block" role="button">Purchase</a>
         </div>
     </div>
 </div>
 
 <div class="col-md-6">
-</div>
+    <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">Order Summery</h5>
+          <p class="card-text">items in your shopping cart</p>
+        <ul class="list-group">
+          <li *ngFor="let o of orderItemSummeryList" class="list-group-item">
+            {{o.product.quantity}}x {{o.product.name}}
+            <div class="float-right">
+              {{o.product.price | currency:'LKR':symbol}}
+            </div>
+          </li>
+          <li class="list-group-item">
+            Total
+            <div class="float-right">
+           
+
+            </div>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </div>
 
 </div>

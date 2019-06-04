@@ -35,9 +35,7 @@
             <td class="col-sm-1 col-md-1 text-center"><strong>{{o.product.price | currency:'LKR'}}</strong></td>
             <td class="col-sm-1 col-md-1 text-center"><strong>{{o.product.price * o.quantity | currency:'LKR'}}</strong></td>
             <td class="col-sm-1 col-md-1">
-              <button type="button" class="btn btn-danger">
-                <span class="glyphicon glyphicon-remove"></span> Remove
-              </button>
+                <button (click)="removeCartItem(o)" class="btn btn-danger">Remove</button>
             </td>
 
 
@@ -62,7 +60,7 @@
                 <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
               </button></td>
             <td>
-              <button type="button" class="btn btn-success">
+              <button type="button" [routerLink]="['/checkout']" class="btn btn-success">
                 Checkout <span class="glyphicon glyphicon-play"></span>
               </button></td>
           </tr>

@@ -7,35 +7,44 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ShoppingCartService {
 
-  apiURL = "http://localhost:8080/orderItem";
+  apiURL = "http://localhost:8080/cart";
 
 
   constructor(private http: HttpClient) { }
 
 
-  addshoppingCart(cartProduct: OrderItem){
-    return this.http.post<OrderItem>(this.apiURL,cartProduct); 
+  addshoppingCart(cartProduct: OrderItem) {
+    return this.http.post<OrderItem>(this.apiURL, cartProduct);
   }
 
   getProductFromCart() {
-    
+
     return this.http.get<[]>(this.apiURL);
   }
 
   get(id) {
 
-     return this.http.get<{}>(this.apiURL + `/${id}`);
+    return this.http.get<{}>(this.apiURL + `/${id}`);
   }
 
-  getAllCartItem(){
+  getCarByUserId() {
 
-    return this.http.get<[]>(this.apiURL+'/all');
+    let id = sessionStorage.getItem("userId");
+    return this.http.get<{}>(this.apiURL + `/user-id/ ${id}`);
+  }
+
+
+  getAllCartItem() {
+
+    return this.http.get<[]>(this.apiURL + '/all');
 
   }
 
-  addProductToCart(oi:OrderItem){
-    return this.http.post(this.apiURL, oi);
+  addProductToCart(cartForm) {
+    return this.http.post(this.apiURL+'/add',cartForm);
+  }
 
-
+  removeItemCart(cartItem){
+    return this.http.delete(this.apiURL, cartItem);
   }
 }

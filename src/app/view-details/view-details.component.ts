@@ -4,6 +4,7 @@ import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { OrderItem } from '../models/OrderItem';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-view-details',
@@ -12,11 +13,12 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 })
 export class ViewDetailsComponent implements OnInit {
   productAddedToCart: any;
-  product ={};
+  product = {};
   id;
-  shopcart : OrderItem = <OrderItem>{};
-  productList: Product[]=[];
-  quantity= 1;
+  shopcart: OrderItem = <OrderItem>{};
+  productList: Product[] = [];
+  quantity = 1;
+  user: User = new User();
 
 
   constructor(private productService: ProductService,
@@ -30,29 +32,36 @@ export class ViewDetailsComponent implements OnInit {
 
     this.productService.get(this.id).subscribe(product => {
       console.log(product);
-     this.product = product;
+      this.product = product;
     });
 
 
   }
 
-  addtoCart(product : Product){
-    
-    console.log(product);
+  addtoCart(product: Product) {
+
+    console.log(this.product);
     //this.productAddedToCart = this.shoppingCartService.getProductFromCart();
     //if(this.productAddedToCart==null){
-      //this.productAddedToCart=[];
+    //this.productAddedToCart=[];
 
-      let oi = <OrderItem> new Object();
-      oi.status = "Pending";
-      oi.quantity = 1;
-      oi.product=product;
+    // let oi = <OrderItem> new Object();
+    // oi.status = "Pending";
+    // oi.quantity = 1;
+    // oi.product=product;
+    // oi.user.id= this.user.id;
 
-      this.shoppingCartService.addProductToCart(oi).subscribe(data => {
-        console.log(data);
-      });
+    let cartForm = {
+      cartId: sessionStorage.getItem("cartId"),
+      quantity: 1,
+      product: product
+    };
 
-   //}
+    this.shoppingCartService.addProductToCart(cartForm).subscribe(data => {
+      console.log(data);
+    });
+
+    //}
   }
 
 }

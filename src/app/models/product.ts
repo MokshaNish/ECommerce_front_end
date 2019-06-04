@@ -5,7 +5,6 @@ export class Product {
 
 
   category: Category = new Category();
-  orderItemList: OrderItem[];
 
 
   id: number;

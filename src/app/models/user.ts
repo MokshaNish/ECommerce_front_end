@@ -1,3 +1,5 @@
+import { OrderItem } from './OrderItem';
+
 export class User {
 
   id: number;
@@ -7,6 +9,8 @@ export class User {
   type: String;
   password: String;
   contactNo: String;
+
+  orderItemList: OrderItem[];
 
   constructor() {
     this.id = null;

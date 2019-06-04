@@ -50,19 +50,7 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  saveProduct() {
-    let product = {
-      "name": "polo",
-      "price": 123,
-      "category": "wwww",
-      "quantity": 444,
-      "imageUrl": "zzzz"
-    };
-
-    this.productService.save(product).subscribe(data => {
-      console.log(data);
-    });
-  }
+  
 
   ngOnDestroy() {
     this.productListSub.unsubscribe();

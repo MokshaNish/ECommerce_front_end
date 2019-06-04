@@ -32,9 +32,16 @@ orderItemList:OrderItem[]=[];
     this.totalPrice = 0;
 
     for(let o of this.orderItemList){
-      this.totalPrice += o.product.price * o.quantity + this.totalPrice;
+      this.totalPrice += o.product.price * o.quantity;
       console.log(this.totalPrice);
     }
+}
+
+removeCartItem(cartItem){
+
+  this.shoppingCartService.removeItemCart(cartItem).subscribe(data => {
+    console.log(data);
+  });
 
 }
 }

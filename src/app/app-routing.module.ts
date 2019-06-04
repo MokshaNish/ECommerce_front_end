@@ -12,7 +12,7 @@ import { ProductsComponent } from './products/products.component';
 import { ManageItemsComponent } from './admin/manage-items/manage-items.component';
 
 const routes: Routes = [
-  { path: "", component: ProductsComponent },
+  { path: "", component: LoginComponent },
   { path: "shoppingCart", component: ShoppingCartComponent },
   { path: "orders", component: MyOrdersComponent },
   { path: "register", component: RegisterComponent },
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: "viewDetails/:pid", component: ViewDetailsComponent },
   { path: "newproduct", component: ManageItemsComponent },
   { path: "editdetails/:pid", component: ManageItemsComponent },
-  { path: "login", component: LoginComponent },
+  { path: "home", component: ProductsComponent },
   { path: "checkout", component: CheckoutComponent },
 
   
