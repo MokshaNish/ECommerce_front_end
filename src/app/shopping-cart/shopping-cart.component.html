@@ -1,5 +1,3 @@
-
-
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -20,22 +18,24 @@
                 <a class="thumbnail pull-left" href="#"> <img class="media-object" [src]="o.product.imageUrl"
                     style="width: 72px; height: 72px;"> </a>
                 <div class="media-body">
-                  <h4 class="media-heading" id ="productNameInCart"><a href="#">{{o.product.name}}</a></h4>
+                  <h4 class="media-heading" id="productNameInCart"><a href="#">{{o.product.name}}</a></h4>
                 </div>
               </div>
             </td>
             <td>
-            <div class="form-inline">
-            <button type="button"(click)="onAddQuantity()"class="btn btn-success">+</button>
-            <input type="number"[ngModel]="o.quantity" (ngModelCnhange)="o.quantity=$event" class="form-control" id="cartQuantity"/> 
-            <button type="button"(click)="onRemoveQuantity()"class="btn btn-danger">-</button>
-            </div>
+              <div class="form-inline">
+                <button type="button" (click)="onAddQuantity()" class="btn btn-success">+</button>
+                <input type="number" [ngModel]="o.quantity" (ngModelCnhange)="o.quantity=$event" class="form-control"
+                  id="cartQuantity" />
+                <button type="button" (click)="onRemoveQuantity()" class="btn btn-danger">-</button>
+              </div>
 
             </td>
             <td class="col-sm-1 col-md-1 text-center"><strong>{{o.product.price | currency:'LKR'}}</strong></td>
-            <td class="col-sm-1 col-md-1 text-center"><strong>{{o.product.price * o.quantity | currency:'LKR'}}</strong></td>
+            <td class="col-sm-1 col-md-1 text-center"><strong>{{o.product.price * o.quantity | currency:'LKR'}}</strong>
+            </td>
             <td class="col-sm-1 col-md-1">
-                <button (click)="removeCartItem(o)" class="btn btn-danger">Remove</button>
+              <button (click)="removeCartItem(o)" class="btn btn-danger">Remove</button>
             </td>
 
 

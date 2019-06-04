@@ -11,20 +11,30 @@ import { OrderItem } from '../models/OrderItem';
 export class CheckoutComponent implements OnInit {
 
 
-  orderItemSummeryList:OrderItem[]=[];
+  orderItemSummeryList: OrderItem[] = [];
 
-  
+
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
 
     this.shoppingCartService.getAllCartItem().subscribe(orderItem => {
-      this.orderItemSummeryList=orderItem;
-       console.log(this.orderItemSummeryList);
-     });
-    
+      this.orderItemSummeryList = orderItem;
+      console.log(this.orderItemSummeryList);
+    });
 
 
+
+  }
+
+  deleteCart() {
+    this.shoppingCartService.deleteCart().subscribe(data=>{
+      
+      this.shoppingCartService.getCarByUserId().subscribe(cartData => {
+        // console.log(cartData);
+        sessionStorage.setItem('cartId', cartData['id']);
+      });
+    });
   }
 
 }

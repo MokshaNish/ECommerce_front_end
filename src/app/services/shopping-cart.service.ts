@@ -47,4 +47,10 @@ export class ShoppingCartService {
   removeItemCart(cartItem){
     return this.http.delete(this.apiURL, cartItem);
   }
+
+  deleteCart(){
+    let id = sessionStorage.getItem("cartId");
+
+    return this.http.delete(this.apiURL  +`/${id}`);
+  }
 }
